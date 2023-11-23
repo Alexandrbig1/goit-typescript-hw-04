@@ -1,153 +1,51 @@
-# Завдання 1
+# TypeScript
+<img align="right" src="https://media.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif" width="100"/>
 
-У вас є компонент React, який використовує useRef та IntersectionObserver для визначення, коли користувач переглядає кінець вмісту. Ваше завдання полягає в наступному:
+Fullstack Developer Bootcamp [@GoIT](https://goit.global/us/) - ![Alt text](https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white) Module
 
-Встановіть правильні типи пропсів для цього компонента. У ньому є дві властивості: children і onContentEndVisible. children - це будь-який валідний React вузол, а onContentEndVisible - це функція без аргументів, що повертає void.
+## Overview
 
-Встановіть правильний тип useRef. Посилання endContentRef використовується для div, який міститься в кінці вмісту.
+This repository contains my 4-th homework from the Fullstack Developer Bootcamp, where I am focused on mastering TypeScript with - ![Alt text](https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black). As a part of my homework assignments, I am exploring the fundamentals of TypeScript to enhance my skills in building robust and scalable web applications.
 
-Встановіть правильний тип для options (клас також може бути типом для options).
+## Learning Objectives
 
-```ts
-import React, { useEffect, useRef } from "react";
+- **TypeScript Fundamentals:** Understanding the basics of TypeScript, including types, interfaces, and modules.
+- **Application Development:** Building simple applications to apply TypeScript concepts in real-world scenarios.
+- **Git and GitHub:** Utilizing version control and collaboration tools for effective project management.
 
-// Опишіть Props
-export function Observer({ children, onContentEndVisible }: Props) {
-  // Вкажіть правильний тип для useRef зверніть увагу, в який DOM елемент ми його передаємо
-  const endContentRef = useRef(null);
+## Repository Structure
 
-  useEffect(() => {
-    // Вкажіть правильний тип для options, підказка, клас також можна вказувати як тип
-    const options = {
-      rootMargin: "0px",
-      threshold: 1.0,
-      root: null,
-    };
+- `src/`: Contains the TypeScript source code for various assignments.
+- [Other directories and files]: Includes additional directories and files related to specific projects or exercises, showcasing practical implementations of learned concepts.
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.intersectionRatio > 0) {
-          onContentEndVisible();
-          observer.disconnect();
-        }
-      });
-    }, options);
+## Languages and Tools:
 
-    if (endContentRef.current) {
-      observer.observe(endContentRef.current);
-    }
+<div align="center">  
+ 
+<a href="https://en.wikipedia.org/wiki/HTML5" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/html5-original-wordmark.svg" alt="HTML5" height="50" /></a>
+<a href="https://www.w3schools.com/css/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/css3-original-wordmark.svg" alt="CSS3" height="50" /></a>
+<a href="https://www.javascript.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/javascript-original.svg" alt="JavaScript" height="50" /></a>
+<a href="https://www.typescriptlang.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/typescript-colored.svg" width="36" height="36" alt="TypeScript" /></a>
+<a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/></a>
+<a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/></a>
+</div>
 
-    return () => {
-      observer.disconnect();
-    };
-  }, [onContentEndVisible]);
+## Connect with me:
 
-  return (
-    <div>
-      {children}
-      <div ref={endContentRef} />
-    </div>
-  );
-}
-```
-
-# Завдання 2
-
-Ваше завдання – додати типи для наступних елементів коду:
-
-RequestStep: Це рядковий літерал.
-
-State: Цей тип являє собою об'єкт з двома властивостями isRequestInProgress і RequestStep
-
-Action: Це тип, що представляє можливі дії, які можуть бути відправлені до редюсера.
-
-Дивіться код і опишіть для нього правильні типи.
-
-```ts
-import React, { useReducer } from "react";
-
-const initialState: State = {
-  isRequestInProgress: false,
-  requestStep: "idle",
-};
-
-function requestReducer(state: State, action: Action): State {
-  switch (action.type) {
-    case "START_REQUEST":
-      return { ...state, isRequestInProgress: true, requestStep: "start" };
-    case "PENDING_REQUEST":
-      return { ...state, isRequestInProgress: true, requestStep: "pending" };
-    case "FINISH_REQUEST":
-      return { ...state, isRequestInProgress: false, requestStep: "finished" };
-    case "RESET_REQUEST":
-      return { ...state, isRequestInProgress: false, requestStep: "idle" };
-    default:
-      return state;
-  }
-}
-
-export function RequestComponent() {
-  const [requestState, requestDispatch] = useReducer(
-    requestReducer,
-    initialState
-  );
-
-  const startRequest = () => {
-    requestDispatch({ type: "START_REQUEST" });
-    // Імітуємо запит до сервера
-    setTimeout(() => {
-      requestDispatch({ type: "PENDING_REQUEST" });
-      // Імітуємо отримання відповіді від сервера
-      setTimeout(() => {
-        requestDispatch({ type: "FINISH_REQUEST" });
-      }, 2000);
-    }, 2000);
-  };
-
-  const resetRequest = () => {
-    requestDispatch({ type: "RESET_REQUEST" });
-  };
-
-  return (
-    <div>
-      <button onClick={startRequest}>Почати запит</button>
-      <button onClick={resetRequest}>Скинути запит</button>
-      <p>Стан запиту: {requestState.requestStep}</p>
-    </div>
-  );
-}
-
-export default RequestComponent;
-```
-
-# Завдання 3
-
-Ви створюєте компонент форми у React. Ви маєте поле введення, в якому ви хочете відстежити зміни. Для цього ви використовуєте обробник подій onChange. Ваше завдання – правильно типізувати подію, яка передається у цю функцію.
-
-```ts
-import React, { useState } from "react";
-
-export function FormComponent() {
-  const [value, setValue] = useState("");
-
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-
-  return <input type="text" value={value} onChange={handleChange} />;
-}
-```
-
-# Завдання 4
-
-Ви вирішили застосувати до меню контекст і тепер вам потрібно його типізувати.
-
-Описати тип SelectedMenu: Це має бути об'єкт, який містить id з типом MenuIds
-
-Описати тип MenuSelected: Цей тип є об'єктом, що містить selectedMenu
-
-Описати тип MenuAction: Цей тип являє собою об'єкт з методом onSelectedMenu, який приймає об'єкт типу SelectedMenu як аргумент повертає void.
-
-Описати тип PropsProvider: Опишіть правильний тип для дітей
-
-Описати тип PropsMenu: Опишіть тип для menus, він має бути від типу Menu
+<div align="center">
+<a href="https://linkedin.com/in/alex-smagin29" target="_blank">
+<img src=https://img.shields.io/badge/linkedin-%231E77B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white alt=linkedin style="margin-bottom: 5px;" />
+</a>
+<a href="https://github.com/alexandrbig1" target="_blank">
+<img src=https://img.shields.io/badge/github-%2324292e.svg?&style=for-the-badge&logo=github&logoColor=white alt=github style="margin-bottom: 5px;" />
+</a>
+  <a href="https://stackoverflow.com/users/22484161/alex-smagin" target="_blank">
+<img src=https://img.shields.io/badge/stackoverflow-%23F28032.svg?&style=for-the-badge&logo=stackoverflow&logoColor=white alt=stackoverflow style="margin-bottom: 5px;" />
+</a>
+<a href="https://dribbble.com/Alexandrbig1" target="_blank">
+<img src=https://img.shields.io/badge/dribbble-%23E45285.svg?&style=for-the-badge&logo=dribbble&logoColor=white alt=dribbble style="margin-bottom: 5px;" />
+</a>
+<a href="https://www.behance.net/a1126" target="_blank">
+<img src=https://img.shields.io/badge/behance-%23191919.svg?&style=for-the-badge&logo=behance&logoColor=white alt=behance style="margin-bottom: 5px;" />
+</a>  
+</div>
