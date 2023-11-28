@@ -5,17 +5,22 @@ Fullstack Developer Bootcamp [@GoIT](https://goit.global/us/) - ![Alt text](http
 
 ## Overview
 
-This repository contains my 4-th homework from the Fullstack Developer Bootcamp, where I am focused on mastering TypeScript with - ![Alt text](https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black). As a part of my homework assignments, I am exploring the fundamentals of TypeScript to enhance my skills in building robust and scalable web applications.
+This repository contains my 4-th homework from the Fullstack Developer Bootcamp, where I am focused on mastering TypeScript with - ![Alt text](https://img.shields.io/badge/React-61DAFB.svg?style=for-the-badge&logo=React&logoColor=black). As a part of my homework assignments, I am exploring the fundamentals of TypeScript and application development using React to enhance my skills in building robust and scalable web applications.
 
 ## Learning Objectives
 
-- **TypeScript Fundamentals:** Understanding the basics of TypeScript, including types, interfaces, and modules.
-- **Application Development:** Building simple applications to apply TypeScript concepts in real-world scenarios.
-- **Git and GitHub:** Utilizing version control and collaboration tools for effective project management.
+- **TypeScript Fundamentals:** Acquire a solid understanding of TypeScript, encompassing essential concepts such as types, interfaces, and modules.
+- **React Application Development:** Apply TypeScript concepts to build robust and scalable web applications using the React framework.
+- **Practical Implementation:** Demonstrate the application of learned TypeScript principles through real-world scenarios and hands-on projects.
+- **Git and GitHub:** Utilize version control effectively, demonstrating proficiency in collaborative development and project management on GitHub.
 
 ## Repository Structure
 
-- `src/`: Contains the TypeScript source code for various assignments.
+- `src/`: Contains the TypeScript source code for various assignments, each organized into appropriately named directories.
+- homework/task1/: TypeScript code for the first assignment.
+- homework/task2/: TypeScript code for the second assignment.
+- homework/task3/: TypeScript code for the third assignment.
+- homework/task4/: TypeScript code for the fourth assignment.
 - [Other directories and files]: Includes additional directories and files related to specific projects or exercises, showcasing practical implementations of learned concepts.
 
 ## Languages and Tools:
